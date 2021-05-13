@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.ghev.restapi.model.Person;
 import pl.ghev.restapi.repo.PersonRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,5 +34,13 @@ public class PersonService {
 
     public void deletePersonById(long id){
          personRepository.deleteById(id);
+    }
+
+    @Transactional
+    public Person editPerson(Person person) {
+       Person personEdited =  personRepository.findById(person.getId()).orElseThrow();
+       personEdited.setName(person.getName());
+       personEdited.setLastName(person.getLastName());
+       return personEdited;
     }
 }

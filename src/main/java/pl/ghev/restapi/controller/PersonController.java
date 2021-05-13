@@ -2,10 +2,7 @@ package pl.ghev.restapi.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.ghev.restapi.dto.PersonDto;
 import pl.ghev.restapi.dto.PersonDtoMapper;
 import pl.ghev.restapi.model.Person;
@@ -25,7 +22,7 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<PersonDto> getAllPeople(){
         return PersonDtoMapper.mapToPersonDtos(personService.findAllPerson());
     }
@@ -37,6 +34,24 @@ public class PersonController {
 
         return personService.findPersonById(id).get();
     }
+
+    @PostMapping
+    public Person  postPerson(@RequestBody Person person){
+
+        return personService.addPerson(person);
+    }
+
+    @PutMapping
+    public Person editPerson(@RequestBody Person person){
+        return personService.editPerson(person);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletePerson(@PathVariable("id") long id ){
+        personService.deletePersonById(id);
+    }
+
+
 
 
 
