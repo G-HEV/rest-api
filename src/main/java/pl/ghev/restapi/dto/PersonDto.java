@@ -8,8 +8,8 @@ import lombok.Getter;
 @Builder
 public class PersonDto {
 
-    Long id;
-    String name;
-    String lastName;
+    private Long id;
+    private String name;
+    private String lastName;
 
 }

@@ -7,12 +7,10 @@ import pl.ghev.restapi.dto.PersonDto;
 import pl.ghev.restapi.dto.PersonDtoMapper;
 import pl.ghev.restapi.model.Person;
 import pl.ghev.restapi.service.PersonService;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/people")
+@RequestMapping(value = "/people")
 public class PersonController {
 
     private final PersonService personService;
@@ -26,8 +24,6 @@ public class PersonController {
     public List<PersonDto> getAllPeople(){
         return PersonDtoMapper.mapToPersonDtos(personService.findAllPerson());
     }
-
-
 
     @GetMapping("/{id}")
     public Person getPersonById(@PathVariable("id") long id){
@@ -50,9 +46,5 @@ public class PersonController {
     public void deletePerson(@PathVariable("id") long id ){
         personService.deletePersonById(id);
     }
-
-
-
-
 
 }
