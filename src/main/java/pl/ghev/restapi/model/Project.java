@@ -39,7 +39,6 @@ public class Project {
 
 
     @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE,CascadeType.DETACH})
-    @JsonIgnore
     private Set<Task> taskList;
 
 
